@@ -1,0 +1,77 @@
+# TODO
+
+# Render
+- [ ] SDL2
+  - [ ] Create window.
+  - [ ] Display image.
+    - [ ] Pixel modification.
+  - [ ] Save image as bmp.
+
+# Systems
+- [ ] Threading
+  - [ ] Get max thread count.
+  - [ ] Threaded tasks
+    - [ ] One thread one render task.
+    - [ ] One render task all threads.
+  - [ ]
+- [ ] Ray Tracer
+  - [ ] Intersect plane.
+  - [ ] Intersect sphare.
+  - [ ] Intersect cube.
+  - [ ] Intersect polygon.
+  - [ ] Reflection.
+  - [ ] Refraction.
+  - [ ] Transparency.
+- [ ] Path tracing.
+  - [ ] ?
+- [ ] File loading.
+  - [ ] Scene
+    - [ ] Load json.
+    - [ ] Load minecraft map.
+    - [ ] Load .obj
+  - [ ] Load textures.
+    - [ ] .bmp
+    - [ ] .png
+- [ ] Timer
+  - [ ] Render time.
+- [ ] Terminal Display.
+- [ ] Terminal control.
+  - [ ] PDcurses.
+  - [ ] ncurses
+- [ ] Pages
+  - [ ] Render time.
+  - [ ] Tasks.
+    - [ ] Total tasks.
+    - [ ] Waiting tasks.
+    - [ ] Current tasks.
+    - [ ] Completed tasks.
+    - [ ] Approximate time until all tasks completed.
+  - [ ] Network
+    - [ ] Download speed.
+    - [ ] Upload speed.
+
+# Network
+- [ ] Create Socket.
+- [ ] Server
+  - [ ] Create listening socket.
+  - [ ] Accept incoming connections.
+  - [ ] Tasks
+    - [ ] Send rendering tasks.
+    - [ ] Listen for incoming completed tasks.
+  - [ ] Send scene to be rendered.
+- [ ] Client
+  - [ ] Connect to server.
+  - [ ] Tasks
+    - [ ] Listen for incoming tasks.
+    - [ ] Send completed tasks.
+  - [ ] Receive scene to be rendered.
+- [ ] Protocol
+  - [ ] Request render task.
+  - [ ] Decline render tasks.
+  - [ ] Ask if render task can be sent.
+  - [ ] Send task to be rendered.
+  - [ ] Receive task to be rendered.
+  - [ ] Send completed rendered task.
+  - [ ] Receive completed rendered task.
+  - [ ] Send scene to be rendered.
+  - [ ] Receive scene to be rendered.
