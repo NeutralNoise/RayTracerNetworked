@@ -2,12 +2,15 @@
 
 # Render
 - [ ] SDL2
-  - [ ] Create window.
+  - [x] Create window.
   - [ ] Display image.
-    - [ ] Pixel modification.
+    - [x] Pixel modification.
   - [ ] Save image as bmp.
 
 # Systems
+- [ ] Input
+  - [x] Poll for inputs
+  - [ ] Keyboard
 - [ ] Threading
   - [ ] Get max thread count.
   - [ ] Threaded tasks
