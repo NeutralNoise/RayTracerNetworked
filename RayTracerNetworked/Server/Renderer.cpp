@@ -1,6 +1,8 @@
 #include "Renderer.h"
 #include <iostream>
 #include <string>
+#include <math.h> //floor
+
 Renderer::Renderer()
 {
 	p_window = NULL; //use null here cause thats what SDL2 does.
