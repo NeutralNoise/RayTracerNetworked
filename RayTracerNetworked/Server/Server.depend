@@ -1,8 +1,9 @@
 # depslib dependency file v1.0
-1587888587 source:e:\sourcecode\raytracernetworked\raytracernetworked\server\main.cpp
+1588177189 source:e:\sourcecode\raytracernetworked\raytracernetworked\server\main.cpp
 	<iostream>
 	<string>
 	"SDL2/SDL.h"
+	"Renderer.h"
 
 1587880613 e:\sourcecode\raytracernetworked\deps\includes\sdl2\sdl.h
 	"SDL_main.h"
@@ -357,4 +358,16 @@
 	"SDL_stdinc.h"
 	"begin_code.h"
 	"close_code.h"
+
+1588174247 e:\sourcecode\raytracernetworked\raytracernetworked\server\renderer.h
+	<SDL2/SDL.h>
+	"TypeDef.h"
+
+1587936091 e:\sourcecode\raytracernetworked\raytracernetworked\server\typedef.h
+
+1588225298 source:e:\sourcecode\raytracernetworked\raytracernetworked\server\renderer.cpp
+	"Renderer.h"
+	<iostream>
+	<string>
+	<math.h>
 
