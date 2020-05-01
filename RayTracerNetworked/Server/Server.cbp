@@ -43,6 +43,9 @@
 		<Linker>
 			<Add option="-m64" />
 		</Linker>
+		<Unit filename="Renderer.cpp" />
+		<Unit filename="Renderer.h" />
+		<Unit filename="TypeDef.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
