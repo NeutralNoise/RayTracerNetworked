@@ -5,6 +5,10 @@
   - [x] Create window.
   - [ ] Display image.
     - [x] Pixel modification.
+    - [ ] Render to texture that is larger then the display window.
+    - [ ] Break render area into chunks.
+      - [ ] Create texture the size of the chunk.
+      - [ ] Copy chunk texture to display texture.
   - [ ] Save image as bmp.
 
 # Systems
@@ -41,7 +45,7 @@
 - [ ] Terminal control.
   - [ ] PDcurses.
   - [ ] ncurses
-- [ ] Pages
+- [ ] UI Pages
   - [ ] Render time.
   - [ ] Tasks.
     - [ ] Total tasks.
