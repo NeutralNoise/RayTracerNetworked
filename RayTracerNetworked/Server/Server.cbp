@@ -45,7 +45,10 @@
 		</Linker>
 		<Unit filename="Camera.h" />
 		<Unit filename="ColourRGBA.h" />
+		<Unit filename="Config.cpp" />
 		<Unit filename="Config.h" />
+		<Unit filename="Helpers.cpp" />
+		<Unit filename="Helpers.h" />
 		<Unit filename="Light.h" />
 		<Unit filename="Material.h" />
 		<Unit filename="Ray.cpp" />
