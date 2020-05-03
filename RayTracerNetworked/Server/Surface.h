@@ -16,7 +16,7 @@ public:
 
 	virtual bool Intersect(const Ray &r, float &dist) { return false; };
 
-	virtual Ray Reflect(const Vector &vec, const Vector &dir, const float &dist, const Ray ray);
+	virtual Ray Reflect(const Vector &vec, const Vector &dir, const float &dist, const Ray &ray);
 
 	virtual Vector CalculateSurfaceNormal();
 
@@ -24,6 +24,27 @@ public:
 
 	Material GetMat() {	return m_mat; }
 
+};
+
+
+class SurfacePlane : public Surface {
+public:
+	SurfacePlane();
+	SurfacePlane(const float &d, const Vector &n);
+	~SurfacePlane();
+
+	bool Intersect(const Ray &r, float &dist) override;
+
+	Ray Reflect(const Vector &vec, const Vector &dir, const float &dist, const Ray &ray) override;
+
+	Vector CalculateSurfaceNormal() override;
+
+private:
+	//How far down the normal is the plane?
+	//Well thats what I think this does.
+	float m_d;
+	//Which way is up
+	Vector m_norm;
 };
 
 #endif // !SURFACE_H_INCLUDED
