@@ -43,9 +43,19 @@
 		<Linker>
 			<Add option="-m64" />
 		</Linker>
+		<Unit filename="Camera.h" />
+		<Unit filename="ColourRGBA.h" />
+		<Unit filename="Config.h" />
+		<Unit filename="Light.h" />
+		<Unit filename="Material.h" />
+		<Unit filename="Ray.cpp" />
+		<Unit filename="Ray.h" />
 		<Unit filename="Renderer.cpp" />
 		<Unit filename="Renderer.h" />
+		<Unit filename="Surface.cpp" />
+		<Unit filename="Surface.h" />
 		<Unit filename="TypeDef.h" />
+		<Unit filename="Vector.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
