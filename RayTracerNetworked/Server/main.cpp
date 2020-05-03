@@ -5,11 +5,15 @@
 #include <string>
 #include "SDL2/SDL.h"
 #include "Renderer.h"
+#include "Vector.h"
+#include "Material.h"
+#include "Helpers.h"
 
 int main(int argc, char ** argv)
 {
     std::cout << "Hello World!\n";
 
+    bool finished = false;
 	int x = 0;
 	int y = 0;
 	Renderer render;
@@ -21,14 +25,27 @@ int main(int argc, char ** argv)
 			switch (ievent.type) {
 			case::SDL_QUIT:
 				running = false;
+			case::SDL_KEYDOWN:
+				switch (ievent.key.keysym.sym)
+				{
+				case::SDLK_RETURN:
+					if (finished) {
+						running = false;
+					}
+					break;
+				default:
+					break;
+				}
+			default:
+				break;
 			}
 		}
-		if (y >= 799) {
+
+		if (y >= 799 && !finished) {
 			std::cout << "Completed Image!\n";
-			std::cin.get();
-			exit(0);
+			finished = true;
 		}
-		else {
+		else if(!finished) {
 			render.LockTexture();
 			for (int i = x; i <= x + 50; i++) {
 				for (int t = y; t <= y + 50; t++) {
