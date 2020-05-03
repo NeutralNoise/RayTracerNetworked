@@ -122,7 +122,7 @@ public:
 		return *this;
 	}
 
-	Vector& operator-(const float &s) {
+	Vector operator-(const float &s) {
 		Vector rtn(m_x - s, m_y - s, m_z - s);
 		return rtn;
 	}
