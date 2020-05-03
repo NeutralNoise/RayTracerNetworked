@@ -151,6 +151,14 @@ public:
 		return rtn;
 	}
 
+	friend Vector operator*(const float &f, const Vector &v) {
+		Vector rtn;
+		rtn.m_x = v.m_x + f;
+		rtn.m_x = v.m_y + f;
+		rtn.m_x = v.m_z + f;
+		return rtn;
+	}
+
 	Vector& operator*=(const float &f) {
 		this->m_x *= f;
 		this->m_y *= f;
