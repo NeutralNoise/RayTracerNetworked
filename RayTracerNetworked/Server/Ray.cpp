@@ -2,7 +2,7 @@
 #include "Config.h"
 #include "Surface.h"
 
-ColourRGBA Ray::Trace(const Ray & r, const std::vector<Surface>* quads, const std::vector<Light>* lights, const float & c, float & coef, Vector & result, bool & hitLight)
+ColourRGBA Ray::Trace(Ray &r, const std::vector<Surface>* quads, const std::vector<Light>* lights, const float & c, float & coef, Vector & result, bool & hitLight)
 {
 	if (c < Config::Ray::MaxBounce) {
 		Surface* closestSurface = nullptr;
@@ -37,7 +37,7 @@ ColourRGBA Ray::Trace(const Ray & r, const std::vector<Surface>* quads, const st
 				//Bounce off the surface then just fuck off
 				//TODO: This is shit bro.
 				closestSurface->m_dist = closestDist;
-				//closestSurface->p_lastRay = &r;
+				closestSurface->p_lastRay = &r;
 
 				normalVec = closestSurface->CalculateSurfaceNormal();
 				Ray ray = closestSurface->Reflect(r.m_orgin, closestSurface->CalculateSurfaceNormal(), closestDist, r);

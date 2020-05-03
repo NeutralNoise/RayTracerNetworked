@@ -21,7 +21,7 @@ public:
 		m_dir = d;
 	}
 
-	ColourRGBA Trace(const Ray &r, const std::vector<Surface>* quads, const std::vector<Light> *lights, const float &c, float &coef, Vector &result, bool &hitLight);
+	ColourRGBA Trace(Ray &r, const std::vector<Surface>* quads, const std::vector<Light> *lights, const float &c, float &coef, Vector &result, bool &hitLight);
 
 	Vector m_orgin;
 	Vector m_dir;
