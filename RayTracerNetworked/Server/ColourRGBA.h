@@ -165,7 +165,7 @@ public:
 		{
 			rtn.a = this->a + c.a;
 		}
-
+        return rtn;
 	}
 
 	ColourRGBA& operator+=(const ColourRGBA &c) {
