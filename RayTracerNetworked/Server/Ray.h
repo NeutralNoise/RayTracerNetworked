@@ -2,8 +2,11 @@
 #define RAY_H_INCLUDED
 #include <vector>
 #include "Vector.h"
-#include "Surface.h"
+//#include "Surface.h"
 #include "Light.h"
+
+class Surface;
+
 class Ray
 {
 public:

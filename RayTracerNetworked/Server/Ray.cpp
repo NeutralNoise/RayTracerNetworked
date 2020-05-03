@@ -1,5 +1,6 @@
 #include "Ray.h"
 #include "Config.h"
+#include "Surface.h"
 
 ColourRGBA Ray::Trace(const Ray & r, const std::vector<Surface>* quads, const std::vector<Light>* lights, const float & c, float & coef, Vector & result, bool & hitLight)
 {
