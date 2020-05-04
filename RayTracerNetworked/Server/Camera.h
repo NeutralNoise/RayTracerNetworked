@@ -11,6 +11,7 @@ struct CameraRotation
 
 class Camera
 {
+public:
 	Vector GetPosition() {
 		return m_position;
 	}
