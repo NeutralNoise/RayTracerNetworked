@@ -103,6 +103,17 @@ public:
 		return rtn;
 	}
 
+	friend Vector operator+(const Vector &v, const float &s) {
+		return Vector(v.m_x + s, v.m_y + s, v.m_z + s);
+	}
+
+	friend Vector operator+(const float &s, const Vector &v) {
+		return v + s;
+	}
+	friend Vector operator+(const Vector &v1, const Vector &v2) {
+		return Vector(v1.m_x + v2.m_x, v1.m_y + v2.m_y, v1.m_z + v2.m_z);
+	}
+
 	Vector& operator+=(const float &s) {
 		this->m_x += s;
 		this->m_y += s;
@@ -112,6 +123,11 @@ public:
 	//SUB
 	Vector operator-(const Vector &v) {
 		Vector rtn(m_x - v.m_x, m_y - v.m_y, m_z - v.m_z);
+		return rtn;
+	}
+
+	friend Vector operator-(const Vector &v1,const Vector &v2) {
+		Vector rtn(v1.m_x - v2.m_x, v1.m_y - v2.m_y, v1.m_z - v2.m_z);
 		return rtn;
 	}
 
@@ -139,6 +155,11 @@ public:
 		return rtn;
 	}
 
+	friend Vector operator*(const Vector &v1, const Vector &v2) {
+		Vector rtn(v1.m_x * v2.m_x, v1.m_y * v2.m_y, v1.m_z * v2.m_z);
+		return rtn;
+	}
+
 	Vector& operator*=(const Vector &v) {
 		this->m_x *= v.m_x;
 		this->m_y *= v.m_y;
@@ -153,9 +174,9 @@ public:
 
 	friend Vector operator*(const float &f, const Vector &v) {
 		Vector rtn;
-		rtn.m_x = v.m_x + f;
-		rtn.m_x = v.m_y + f;
-		rtn.m_x = v.m_z + f;
+		rtn.m_x = v.m_x * f;
+		rtn.m_y = v.m_y * f;
+		rtn.m_z = v.m_z * f;
 		return rtn;
 	}
 
