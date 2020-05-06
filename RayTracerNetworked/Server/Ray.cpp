@@ -2,31 +2,32 @@
 #include "Config.h"
 #include "Surface.h"
 
-ColourRGBA Ray::Trace(Ray &r, const std::vector<Surface>* quads, const std::vector<Light>* lights, const float & c, float & coef, Vector & result, bool & hitLight)
+bool Ray::Trace(Ray &r, const std::vector<Surface*>* quads, const std::vector<Light>* lights, const float & c, float & coef, Vector & result, bool & hitLight)
 {
+	bool rtn = false;
 	if (c < Config::Ray::MaxBounce) {
 		Surface* closestSurface = nullptr;
 		Vector normalVec;
 		float dist = 0.0f;
 		float closestDist = 0.0f;
-
-		for (Surface quad : *quads) {
+		for (Surface *quad : *quads) {
 			//Have we hit something
-			if (quad.Intersect(r, dist)) {
+			if (quad->Intersect(r, dist)) {
 				//Find the closest surface.
 				if (closestSurface == nullptr) {
 					if (dist > 0) {
 						closestDist = dist;
-						closestSurface = &quad;
+						closestSurface = quad;
 					}
 				}
 				else {
 					if (dist > 0 && dist < closestDist)
 					{
 						closestDist = dist;
-						closestSurface = &quad;
+						closestSurface = quad;
 					}
 				}
+				rtn = true;
 			}
 		}
 
@@ -49,12 +50,12 @@ ColourRGBA Ray::Trace(Ray &r, const std::vector<Surface>* quads, const std::vect
 				{
 					bool lightBlocker = false;
 					//check if anything is in the way
-					for(Surface s : *quads)
+					for(Surface *s : *quads)
 					{
 						float ld = 0;
 						Vector sl = (ls.pos - ray.m_orgin).Normalize();
 						lsr = Ray(ray.m_orgin, sl);
-						if (s.Intersect(lsr, ld))
+						if (s->Intersect(lsr, ld))
 						{
 							if (ld > 0.01)
 							{
@@ -84,12 +85,15 @@ ColourRGBA Ray::Trace(Ray &r, const std::vector<Surface>* quads, const std::vect
 
 				}
 				ray.Trace(ray, quads, lights, c + 1, coef, result, hitLight);
-				return ColourRGBA(result, 255);
+				//return ColourRGBA(result, 255);
+				return rtn;
 			}
 		}
 		else {
-			return ColourRGBA(result, 255);
+			//return ColourRGBA(result, 255);
+			return rtn;
 		}
 	}
-	return ColourRGBA();
+	//return ColourRGBA();
+	return rtn;
 }

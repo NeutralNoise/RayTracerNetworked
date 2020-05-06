@@ -21,10 +21,11 @@ public:
 		m_dir = d;
 	}
 
-	ColourRGBA Trace(Ray &r, const std::vector<Surface>* quads, const std::vector<Light> *lights, const float &c, float &coef, Vector &result, bool &hitLight);
+	bool Trace(Ray &r, const std::vector<Surface*>* quads, const std::vector<Light> *lights, const float &c, float &coef, Vector &result, bool &hitLight);
 
 	Vector m_orgin;
 	Vector m_dir;
+
 };
 
 #endif // !RAY_H_INCLUDED
