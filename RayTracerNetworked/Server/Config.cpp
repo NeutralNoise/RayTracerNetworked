@@ -1,10 +1,23 @@
 #include "Config.h"
 
+UInt64 Config::Ray::RaysPerPixel = 16;
 UInt64 Config::Ray::MaxBounce = 5;
 ColourRGBA Config::Ray::ColourWhite = ColourRGBA(255.0f, 255.0f, 255.0f, 0.0f);
 ColourRGBA Config::Ray::Nothing = ColourRGBA(0.0f, 0.0f, 0.0f, 255.0f);
 ColourRGBA Config::Ray::SkyColour = ColourRGBA(255.0f, 125.0f, 125.0f, 255.0f);
 
+//Different window sizes.
+
+//int Config::Width = 3840;
+//int Config::Height = 2160;
+//int Config::Width = 1280;
+//int Config::Height = 720;
+int Config::Width = 800;
+int Config::Height = 800;
+//int Config::Width = 300;
+//int Config::Height = 300;
+//int Config::Width = 10;
+//int Config::Height = 10;
 
 float Config::Tolerance = 0.0001f;
 Vector Config::Orgin = Vector(0.00f, 0.00f, 0.00f);

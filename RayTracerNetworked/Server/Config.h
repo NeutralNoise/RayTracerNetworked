@@ -10,12 +10,14 @@ public:
 
 	struct Ray
 	{
+		static UInt64 RaysPerPixel;
 		static UInt64 MaxBounce;
 		static ColourRGBA ColourWhite;
 		static ColourRGBA Nothing;
 		static ColourRGBA SkyColour;
 	};
-
+	static int Width;
+	static int Height;
 	static float Tolerance;
 	static Vector Orgin;
 	static Vector UP;
