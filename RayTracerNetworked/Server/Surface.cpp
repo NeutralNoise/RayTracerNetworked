@@ -39,6 +39,7 @@ bool SurfacePlane::Intersect(const Ray & r, float & dist)
 // where t is marching down the ray dir from the orgin
 
 //N(ro + t * rd) + d = 0;
+	//TODO this doesn't seem right.
 	float Denom = m_norm.DotProduct(r.m_dir);
 	if ((Denom < -Config::Tolerance) || (Denom > Config::Tolerance))
 	{
