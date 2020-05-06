@@ -47,4 +47,22 @@ private:
 	Vector m_norm;
 };
 
+class SurfaceSphere : public Surface
+{
+public:
+	SurfaceSphere();
+	SurfaceSphere(const Vector &pos);
+	SurfaceSphere(const float &r, const Vector &pos);
+	~SurfaceSphere() {};
+
+	bool Intersect(const Ray &r, float &dist) override;
+
+	Ray Reflect(const Vector &vec, const Vector &dir, const float &dist, const Ray &ray) override;
+
+	Vector CalculateSurfaceNormal() override;
+
+private:
+	float m_radius;
+	Vector m_pos;
+};
 #endif // !SURFACE_H_INCLUDED
