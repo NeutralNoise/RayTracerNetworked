@@ -22,11 +22,11 @@
     - [ ] One render task all threads.
   - [ ]
 - [ ] Ray Tracer
-  - [ ] Intersect plane.
-  - [ ] Intersect sphare.
+  - [x] Intersect plane.
+  - [x] Intersect sphare.
   - [ ] Intersect cube.
   - [ ] Intersect polygon.
-  - [ ] Reflection.
+  - [x] Reflection.
   - [ ] Refraction.
   - [ ] Transparency.
 - [ ] Path tracing.
