@@ -27,6 +27,10 @@ public:
 		m_rotation.CameraY = m_rotation.CameraZ.CrossProduct(m_rotation.CameraX).Normalize();
 	}
 
+	CameraRotation GetRotation() const {
+		return m_rotation;
+	}
+
 	float GetFov() const {
 		return m_fov;
 	}
