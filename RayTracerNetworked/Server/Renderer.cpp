@@ -95,9 +95,6 @@ void Renderer::SetPixelWithLock(const int &x, const int &y, const UInt8 &r, cons
 void Renderer::SetPixelAreaWithLock(const int & x, const int & y, const UInt8 & r, const Uint8 & g, const UInt8 & b)
 {
 	//TODO Fix this. it stops at y 400
-	//These widths should not be hard coded.
-	//TODO remove this hard coded size
-	const int maxChunks = 800 / m_chunkSize;
 	SDL_Rect chunkArea;
 	chunkArea.x = (int)floor(x / m_chunkSize);
 	chunkArea.y = (int)floor(y / m_chunkSize);
