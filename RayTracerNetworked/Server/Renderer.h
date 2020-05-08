@@ -1,6 +1,7 @@
 #ifndef RENDERER_H_INCLUDED
 #define RENDERER_H_INCLUDED
 #include <SDL2/SDL.h>
+#include <string>
 #include "TypeDef.h"
 
 class Renderer
@@ -15,6 +16,7 @@ public:
 	void LockTexture();
 	void LockTextureArea(const int chunkID);
 	void UnlockTexture();
+	void SaveImage(const std::string &file);
 	void Draw();
 	void Clean();
 private:
