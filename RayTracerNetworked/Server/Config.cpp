@@ -30,6 +30,9 @@ int Config::ImageHeight = 2160;
 //int Config::ImageWidth = 10;
 //int Config::ImageHeight = 10;
 
+int Config::ChunkWidth = 10;
+int Config::ChunkHeight = 10;
+
 float Config::Tolerance = 0.0001f;
 Vector Config::Orgin = Vector(0.00f, 0.00f, 0.00f);
 Vector Config::UP = Vector(0.0f, 0.0f, 1.0f);

@@ -20,6 +20,10 @@ public:
 	static int Height;
 	static int ImageWidth;
 	static int ImageHeight;
+
+	static int ChunkWidth;
+	static int ChunkHeight;
+
 	static float Tolerance;
 	static Vector Orgin;
 	static Vector UP;
