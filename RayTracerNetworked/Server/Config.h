@@ -18,6 +18,8 @@ public:
 	};
 	static int Width;
 	static int Height;
+	static int ImageWidth;
+	static int ImageHeight;
 	static float Tolerance;
 	static Vector Orgin;
 	static Vector UP;
