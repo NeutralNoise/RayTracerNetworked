@@ -42,7 +42,7 @@ public:
 private:
 	Vector m_position;
 	CameraRotation m_rotation;
-	float m_fov;
+	float m_fov = 0;
 
 };
 
