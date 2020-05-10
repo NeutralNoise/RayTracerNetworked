@@ -5,20 +5,20 @@
   - [x] Create window.
   - [ ] Display image.
     - [x] Pixel modification.
-    - [ ] Render to texture that is larger then the display window.
-    - [ ] Break render area into chunks.
+    - [x] Render to texture that is larger then the display window.
+    - [x] Break render area into chunks.
       - [ ] Create texture the size of the chunk.
       - [ ] Copy chunk texture to display texture.
-  - [ ] Save image as bmp.
+  - [x] Save image as bmp.
 
 # Systems
 - [ ] Input
   - [x] Poll for inputs
   - [ ] Keyboard
 - [ ] Threading
-  - [ ] Get max thread count.
+  - [x] Get max thread count.
   - [ ] Threaded tasks
-    - [ ] One thread one render task.
+    - [x] One thread one render task.
     - [ ] One render task all threads.
   - [ ]
 - [ ] Ray Tracer
