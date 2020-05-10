@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include <time.h>
 #include "SDL2/SDL.h"
 #include "Renderer.h"
 #include "Vector.h"
@@ -13,71 +14,26 @@
 #include "Camera.h"
 #include "Surface.h"
 #include "Helpers.h"
+#include "ThreadManager.h"
+#include "World.h"
+#include "TaskManager.h"
 
 int main(int argc, char ** argv)
 {
     std::cout << "Hello World!\n";
-
+	TaskManager myTasks;
+	ThreadManager tm(&myTasks);
     bool finished = false;
 	int x = 0;
 	int y = 0;
-
-	//Define some colours to use.
-
-	ColourRGBA whiteLight(1.0f, 1.0f, 1.0f, 1.0f);
-	ColourRGBA greenLight(255 / 2, 255, 255 / 2, 255);
-	ColourRGBA gray(255 / 255 / 2, 255, 255 / 2, 255);
-
-	//Position a light
-	Vector lightPos(5, -9, 5);
-
-	//Light mainLight(lightPos, Vector());
-
-	//Some where to store lights.
-	std::vector<Light> lights{Light(lightPos, Vector())};
-
+	World theWorld;
+	theWorld.CreateWorld();
 	//Create a camera
 	Camera camera;
 	//camera.SetPosition(Vector(0.0f, -10.0f, 1.0f));
 	camera.SetPosition(Vector(0.0f, -10.0f, 1.0f));
 	camera.SetRotation(CameraRotation());
 	camera.SetFov(45.0f);
-
-	//Create some Materials
-	Material mat;
-	mat.disfuse = ColourRGBA(255.0f, 125.0f, 136.0f, 255.0f);
-	//mat.disfuse = new ColourRGBA(1.0f, 1.0f, 1.0f, 1.0f);
-	mat.disfuse.Normalize();
-	mat.reflect = 0.1f;
-
-	Material smat;
-	smat.disfuse = ColourRGBA(0.0f, 0.0f, 1.0f, 1.0f);
-	smat.reflect = 0.9f;
-
-	Material smat2;
-	smat2.disfuse = ColourRGBA(0.5f, 1.0f, 0.5f, 1.0f);
-	//smat2.reflect = 0.5f;
-
-	Material smat3;
-	smat3.disfuse = ColourRGBA(0.5f, 0.5f, 0.5f, 1.0f);
-
-	//Create objects to place in the world.
-	SurfacePlane worldPlane;
-	worldPlane.SetMat(mat);
-
-	SurfaceSphere worldSphere;
-	worldSphere.SetMat(smat);
-
-	SurfaceSphere worldSphere2(Vector(-2.0f, -2.0f, 2.0f));
-	worldSphere2.SetMat(smat2);
-	SurfaceSphere worldSphere3(Vector(2.0f, -2.0f, 2.0f));
-	worldSphere3.SetMat(smat2);
-	SurfaceSphere worldSphere4(Vector(0.0f, 2.0f, 2.0f));
-	worldSphere4.SetMat(smat3);
-
-	//Store all the objects
-
-	std::vector<Surface*> Walls{ &worldPlane, &worldSphere, &worldSphere2 , &worldSphere3, &worldSphere4 };
 
 	//Cast the ray
 	bool hit = false;
@@ -114,6 +70,10 @@ int main(int argc, char ** argv)
 	render.InitRenderer(Config::Width, Config::Height);
 	bool running = true;
 	bool imageComplete = false;
+	time_t startTime = time(NULL);
+	int maxChunks = Helpers::MaxChunks(Config::ImageWidth, Config::ImageHeight, Config::ChunkWidth, Config::ChunkHeight);
+	bool generatedTasks = false;
+	int insertCount = 0;
 	while (running) {
 		SDL_Event ievent;
 		while (SDL_PollEvent(&ievent) != 0) {
@@ -131,101 +91,62 @@ int main(int argc, char ** argv)
 				default:
 					break;
 				}
+			case::SDL_MOUSEMOTION:
+				//std::cout << "MouseMove\n";
+				break;
 			default:
 				break;
 			}
 		}
-		Vector testVec = (filmDist * camera.GetRotation().CameraZ);
-		Vector FilmCenter = camera.GetPosition() - (filmDist * camera.GetRotation().CameraZ);
+		//Generate new Tasks;
+		if (!generatedTasks) {
 
-		//Create a new Ray to Cast
-		Ray ray;
+			for (int t = 0; t < maxChunks; t++) {
+				myTasks.AddTask(Task(t, Config::ChunkWidth, Config::ChunkHeight));
+			}
+			//Create some new threads.
+			for (int i = 0; i < Config::MaxThreadCount; i++) {
+				tm.CreateThread();
+			}
+			generatedTasks = true;
+		}
+
 		if (!imageComplete) {
-			for (int x = 0; x < Config::Width; x++)
-			{
+			if (myTasks.HasCompletedTask()) {
+				CompletedTask ct = myTasks.GetCompletedTask();
 				render.LockTexture();
-				for (int y = 0; y < Config::Height; y++)
-				{
 
-					//Work out where we are casting this ray from.
-					float filmX = -1.0f + 2.0f * ((float)x / (float)Config::Width); ;
-					float filmY = -1.0f + 2.0f * ((float)y / (float)Config::Height);
-
-					float alpha = 1.0f;
-					Vector rayColour;
-					bool hitSurface = false;
-					//build up our colour
-					for (UInt64 r = 0; r < Config::Ray::RaysPerPixel; r++)
-					{
-						//Jittering AA
-						float offX = filmX + Helpers::Rand::RandomBilateral() * halfPixW;
-						float offY = filmY + Helpers::Rand::RandomBilateral() * halfPixH;
-						Vector filmP = FilmCenter + offX * halffilmW * camera.GetRotation().CameraX + offY * halffilmH * camera.GetRotation().CameraY;
-
-						ray.m_orgin = camera.GetPosition();
-						ray.m_dir = (filmP - camera.GetPosition());
-
-						float coef = 1.0f;
-						Vector result(0.0f, 0.0f, 0.0f);
-						bool hitLight = false;
-						if (hitSurface) {
-							ray.Trace(ray, &Walls, &lights, 0, coef, result, hitLight);
-						}
-						else {
-							hitSurface = ray.Trace(ray, &Walls, &lights, 0, coef, result, hitLight);
-						}
-						//rayColour += RayColourContrib * (ray.Trace(ray, Walls, lights, 0, ref coef, ref result, ref hitLight).ColourToVector(ref a));
-						rayColour += RayColourContrib * result;
-						rayCount++;
-					}
-
-					float p = (float)rayCount / (float)((UInt64)(Config::Width * Config::Height) * Config::Ray::RaysPerPixel);
-					std::cout << std::to_string(p * 100) << " perenct complete\r";
-
-					ColourRGBA colour(rayColour, alpha);
-
-					//Nothing intersects with this ray so black
-					if (!hitSurface)
-					{
-						//colour = new ColourRGBA(0.0f, 0.0f, 0.0f, 255.0f);
-						//colour = ColourRGBA(0.0f, 0.0f, 0.0f, 255.0f);
-						colour = Config::Ray::SkyColour;
-					}
-					else if (hitSurface) {
-						colour.Scale(255);
-						colour.Clamp();
-					}
-					else
-					{
-						//Correct the gamma.
-						/*
-						colour.r = Lin2srgb(colour.r);
-						colour.g = Lin2srgb(colour.g);
-						colour.b = Lin2srgb(colour.b);
-						*/
-						//colour.Normalize();
-						colour.Scale(255);
-						colour.Clamp();
-
-
-					}
-					render.SetPixel(x, y, colour.r, colour.g, colour.b);
+				render.SetPixel(ct.x, ct.y, ct.colour.r, ct.colour.g, ct.colour.b);
+				if (insertCount > (Config::ChunkWidth * Config::ChunkHeight)) {
+					render.UnlockTexture();
+					render.Draw();
+					render.LockTexture();
+					insertCount = 0;
 				}
-				render.UnlockTexture();
-
-				//We want to drew this each frame for testing
-				render.Draw();
-				//Check if the image is complete
-				if (x == Config::Width - 1) {
-					imageComplete = true;
+				else {
+					insertCount++;
 				}
 			}
 		}
+
+		if (!myTasks.HasTask()) {
+			if (!imageComplete) {
+				if (!myTasks.HasCompletedTask()) {
+					//imageComplete = true;
+					render.UnlockTexture();
+					std::cout << "Image Completed\n";
+					std::cout << time(NULL) - startTime << "\n";
+					render.Draw();
+				}
+			}
+			
+		}
+
 		//render.Draw();
-
 	}
+	tm.JoinAllThreads();
 	render.Clean();
-
+	theWorld.DestroyWorld();
 	//std::cin.get();
 	return 0;
 }
