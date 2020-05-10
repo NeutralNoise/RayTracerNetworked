@@ -168,6 +168,11 @@
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="Surface.cpp" />
+    <ClCompile Include="Task.h" />
+    <ClCompile Include="TaskManager.cpp" />
+    <ClCompile Include="ThreadFunctions.cpp" />
+    <ClCompile Include="ThreadManager.cpp" />
+    <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
@@ -179,9 +184,13 @@
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="Surface.h" />
+    <ClInclude Include="TaskManager.h" />
+    <ClInclude Include="ThreadFunctions.h" />
+    <ClInclude Include="ThreadManager.h" />
     <ClInclude Include="TypeDef.h" />
     <ClInclude Include="Vector.h" />
     <ClInclude Include="Vertex.h" />
+    <ClInclude Include="World.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

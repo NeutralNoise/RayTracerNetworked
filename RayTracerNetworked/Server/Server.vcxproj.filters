@@ -33,6 +33,21 @@
     <ClCompile Include="Config.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Task.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="TaskManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadFunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="World.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Renderer.h">
@@ -69,6 +84,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Helpers.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TaskManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadManager.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadFunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="World.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

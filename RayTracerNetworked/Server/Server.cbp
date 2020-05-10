@@ -57,8 +57,17 @@
 		<Unit filename="Renderer.h" />
 		<Unit filename="Surface.cpp" />
 		<Unit filename="Surface.h" />
+		<Unit filename="Task.h" />
+		<Unit filename="TaskManager.cpp" />
+		<Unit filename="TaskManager.h" />
+		<Unit filename="ThreadFunctions.cpp" />
+		<Unit filename="ThreadFunctions.h" />
+		<Unit filename="ThreadManager.cpp" />
+		<Unit filename="ThreadManager.h" />
 		<Unit filename="TypeDef.h" />
 		<Unit filename="Vector.h" />
+		<Unit filename="World.cpp" />
+		<Unit filename="World.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
