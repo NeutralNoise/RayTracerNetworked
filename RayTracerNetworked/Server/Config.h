@@ -30,6 +30,8 @@ public:
 	static float MinTolerance;
 	static float MinHitDistance;//Clipingplan.
 
+	static int MaxThreadCount;
+
 };
 
 #endif // !CONFIG_H_INCLUDED
